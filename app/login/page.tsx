@@ -4,7 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation"; // untuk pindah halaman lewat kode
-import Header from "../components/header";
+import Header from "../components/Header";
 
 export default function LoginPage() {
   const router = useRouter();

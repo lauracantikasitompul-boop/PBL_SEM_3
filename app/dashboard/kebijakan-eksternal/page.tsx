@@ -1,5 +1,5 @@
-import TopBar from "../../components/topbar";
-import KategoriGrid from "../../components/kategorigrid";
+import TopBar from "../../components/TopBar";
+import KategoriGrid from "../../components/KategoriGrid";
 
 // Data kategori (dummy dari Figma, nanti diambil dari database)
 const kategori = [
