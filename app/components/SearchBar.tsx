@@ -28,7 +28,7 @@ export default function SearchBar() {
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         placeholder="Cari berdasarkan nomor atau judul peraturan"
-        className="min-w-0 flex-1 bg-transparent px-6 py-4 text-base outline-none placeholder:text-[#7A869A]"
+        className="min-w-0 flex-1 bg-transparent px-6 py-4 text-base outline-none placeholder:text-[#d5c7c7]"
       />
       <button
         type="submit"
