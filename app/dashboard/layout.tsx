@@ -1,4 +1,4 @@
-import Sidebar from "../components/sidebar";
+import Sidebar from "../components/Sidebar";
 
 // Layout = "pembungkus" semua halaman di folder /dashboard.
 // {children} = isi halaman yang sedang dibuka.

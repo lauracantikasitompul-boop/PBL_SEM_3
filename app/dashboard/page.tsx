@@ -1,4 +1,4 @@
-import TopBar from "../components/topbar";
+import TopBar from "../components/TopBar";
 
 // Data kartu statistik (angka dummy dari Figma, nanti dari database)
 const statistik = [
