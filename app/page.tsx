@@ -273,68 +273,7 @@ function RegulationSection({
 
 /* ---------- Komponen ---------- */
 
-const APP_NAME = "Peraturan";
-
-type Status = "Berlaku" | "Dicabut" | "Diganti";
-
-const statusStyle: Record<Status, { bar: string; badge: string }> = {
-  Berlaku: { bar: "border-l-[#0F766E]", badge: "bg-[#E3F3F1] text-[#0B5A54]" },
-  Dicabut: { bar: "border-l-[#B42318]", badge: "bg-[#FCE8E6] text-[#8A1A11]" },
-  Diganti: { bar: "border-l-[#B45309]", badge: "bg-[#FBEFD9] text-[#8A3F06]" },
-};
-
-// TODO: ganti dengan data dari API / database
-const pemberitahuan: {
-  id: number;
-  status: Status;
-  nomor: string;
-  judul: string;
-  tanggal: string;
-}[] = [
-  {
-    id: 1,
-    status: "Dicabut",
-    nomor: "Perdir No. 12 Tahun 2022",
-    judul: "Pedoman Penggunaan Fasilitas Laboratorium",
-    tanggal: "3 Okt 2026",
-  },
-  {
-    id: 2,
-    status: "Diganti",
-    nomor: "Perdir No. 07 Tahun 2021",
-    judul: "Tata Cara Pengajuan Cuti Pegawai",
-    tanggal: "1 Okt 2026",
-  },
-  {
-    id: 3,
-    status: "Berlaku",
-    nomor: "Perdir No. 03 Tahun 2026",
-    judul: "Standar Pelayanan Administrasi Akademik",
-    tanggal: "28 Sep 2026",
-  },
-  {
-    id: 4,
-    status: "Dicabut",
-    nomor: "Perdir No. 19 Tahun 2020",
-    judul: "Ketentuan Peminjaman Aset Kampus",
-    tanggal: "24 Sep 2026",
-  },
-];
-
-const jenisPeraturan = [
-  { slug: "peraturan-direktur", nama: "Peraturan Direktur", jumlah: 48 },
-  { slug: "keputusan-direktur", nama: "Keputusan Direktur", jumlah: 63 },
-  { slug: "surat-edaran", nama: "Surat Edaran", jumlah: 27 },
-  { slug: "pedoman-sop", nama: "Pedoman & SOP", jumlah: 35 },
-];
-
-const navLinks = [
-  { href: "/", label: "Beranda" },
-  { href: "/peraturan", label: "Daftar Peraturan" },
-  { href: "/login", label: "Masuk Admin" },
-];
-
-export default function HomePage() {
+export default function Home() {
   return (
     <main className={styles.page}>
       <div className={styles.darkArea}>
