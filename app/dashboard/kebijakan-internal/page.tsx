@@ -12,7 +12,7 @@ const kategori = [
 export default function KebijakanInternalPage() {
   return (
     <main className="flex-1 p-4">
-      <TopBar judul="Kebijakan Internal" />
+      <TopBar judul="Kebijakan Internal" kembaliKe="/dashboard" />
       <KategoriGrid data={kategori} />
     </main>
   );
