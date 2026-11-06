@@ -11,7 +11,7 @@ const kategori = [
 export default function PedomanInternalPage() {
   return (
     <main className="flex-1 p-4">
-      <TopBar judul="Pedoman Internal" />
+      <TopBar judul="Pedoman Internal" kembaliKe="/dashboard" />
       <KategoriGrid data={kategori} />
     </main>
   );

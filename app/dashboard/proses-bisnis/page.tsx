@@ -12,7 +12,7 @@ const kategori = [
 export default function ProsesBisnisPage() {
   return (
     <main className="flex-1 p-4">
-      <TopBar judul="Proses Bisnis" />
+      <TopBar judul="Proses Bisnis" kembaliKe="/dashboard" />
       <KategoriGrid data={kategori} />
     </main>
   );

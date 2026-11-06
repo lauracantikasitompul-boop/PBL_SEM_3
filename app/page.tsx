@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import styles from "./home.module.css";
+import PemberitahuanTerbaru from "./components/pemberitahuanterbaru";
 import {
   formatTanggal,
   labelNomorTahun,
@@ -271,144 +272,139 @@ export default function Home() {
   return (
     <main className={styles.page}>
       <div className={styles.darkArea}>
-      {/* Navbar */}
-      <header className={styles.topbar}>
-        <Link href="/" className={styles.brand}>
-          <span className={styles.brandName}>MAPENA</span>
-          <span className={styles.brandSub}>Peraturan Direktur Polibatam</span>
-        </Link>
+        {/* Navbar */}
+        <header className={styles.topbar}>
+          <Link href="/" className={styles.brand}>
+            <span className={styles.brandName}>MAPENA</span>
+            <span className={styles.brandSub}>Riwayat Peraturan Direktur</span>
+          </Link>
 
-        <nav className={styles.nav} aria-label="Menu utama">
-          {menu.map((item) => (
-            <Link
-              key={item.label}
-              href={item.href}
-              className={item.active ? styles.navActive : undefined}
-              aria-current={item.active ? "page" : undefined}
-            >
-              {item.label}
-            </Link>
-          ))}
-        </nav>
-
-        <Link href="/login" className={styles.loginButton}>
-          Login Admin
-        </Link>
-      </header>
-
-      <div className={styles.container}>
-        {/* Hero + pencarian */}
-        <section className={styles.hero}>
-          <p className={styles.badge}>
-            <span className={styles.badgeDot} aria-hidden="true" />
-            Peraturan Direktur
-          </p>
-
-          <h1>
-            Selamat datang di <span className={styles.accent}>MAPENA</span>
-          </h1>
-
-          <p className={styles.lead}>
-            Cari peraturan direktur, pantau riwayat perubahannya, dan lihat
-            status keberlakuannya dalam satu tempat.
-          </p>
-
-          <form
-            className={styles.search}
-            action="/peraturan"
-            method="get"
-            role="search"
-          >
-            <div className={styles.searchBox}>
-              <svg
-                className={styles.searchIcon}
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
+          <nav className={styles.nav} aria-label="Menu utama">
+            {menu.map((item) => (
+              <Link
+                key={item.label}
+                href={item.href}
+                className={item.active ? styles.navActive : undefined}
+                aria-current={item.active ? "page" : undefined}
               >
-                <circle cx="11" cy="11" r="7" />
-                <path d="M20 20l-3.5-3.5" />
-              </svg>
-              <input
-                type="search"
-                name="q"
-                placeholder="Cari peraturan..."
-                aria-label="Cari peraturan"
-              />
-              <button type="submit">Cari</button>
-            </div>
-
-            <div className={styles.filters}>
-              <select name="jenis" aria-label="Jenis peraturan" defaultValue="">
-                <option value="">Semua Jenis</option>
-                {jenisDokumen.map((j) => (
-                  <option key={j} value={j}>
-                    {j}
-                  </option>
-                ))}
-              </select>
-
-              <select name="tahun" aria-label="Tahun" defaultValue="">
-                <option value="">Semua Tahun</option>
-                {tahun.map((t) => (
-                  <option key={t} value={t}>
-                    {t}
-                  </option>
-                ))}
-              </select>
-            </div>
-          </form>
-        </section>
-
-        <section className={styles.panels}>
-          <div className={styles.panel}>
-            <div className={styles.panelHeader}>
-              <h2>Pemberitahuan Terbaru</h2>
-              <Link href="/pemberitahuan" className={styles.panelLink}>
-                Lihat semua
+                {item.label}
               </Link>
-            </div>
+            ))}
+          </nav>
 
-            <ul className={styles.list}>
-              {notifications.map((n) => (
-                <li key={n.text} className={toneClass[n.tone]}>
-                  <div className={styles.notificationItem}>
-                    <span className={styles.tag}>{n.tag}</span>
-                    <span>{n.text}</span>
-                    <span className={styles.date}>{n.date}</span>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <Link href="/login" className={styles.loginButton}>
+            Login Admin
+          </Link>
+        </header>
 
-          <div className={styles.panel}>
-            <div className={styles.panelHeader}>
-              <h2>Jenis Pemberitahuan</h2>
-            </div>
-
-            <ul className={styles.list}>
-              {jenisPemberitahuan.map((j) => (
-                <li key={j.name} className={toneClass[j.tone]}>
-                  <Link href={j.href} className={styles.typeItem}>
-                    <span className={styles.typeDot} aria-hidden="true" />
-                    <span className={styles.typeName}>{j.name}</span>
-                    <span className={styles.typeDesc}>{j.desc}</span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-
-            <p className={styles.note}>
-              Klik salah satu jenis untuk menyaring pemberitahuan.
+        <div className={styles.container}>
+          {/* Hero + pencarian */}
+          <section className={styles.hero}>
+            <p className={styles.badge}>
+              <span className={styles.badgeDot} aria-hidden="true" />
+              Peraturan Direktur
             </p>
-          </div>
-        </section>
-      </div>
+
+            <h1>
+              Selamat datang di <span className={styles.accent}>MAPENA</span>
+            </h1>
+
+            <p className={styles.lead}>
+              Cari peraturan direktur, pantau riwayat perubahannya, dan lihat
+              status keberlakuannya dalam satu tempat.
+            </p>
+
+            <form
+              className={styles.search}
+              action="/peraturan"
+              method="get"
+              role="search"
+            >
+              <div className={styles.searchBox}>
+                <svg
+                  className={styles.searchIcon}
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <circle cx="11" cy="11" r="7" />
+                  <path d="M20 20l-3.5-3.5" />
+                </svg>
+                <input
+                  type="search"
+                  name="q"
+                  placeholder="Cari peraturan..."
+                  aria-label="Cari peraturan"
+                />
+                <button type="submit">Cari</button>
+              </div>
+
+              <div className={styles.filters}>
+                <select
+                  name="jenis"
+                  aria-label="Jenis peraturan"
+                  defaultValue=""
+                >
+                  <option value="">Semua Jenis</option>
+                  {jenisDokumen.map((j) => (
+                    <option key={j} value={j}>
+                      {j}
+                    </option>
+                  ))}
+                </select>
+
+                <select name="tahun" aria-label="Tahun" defaultValue="">
+                  <option value="">Semua Tahun</option>
+                  {tahun.map((t) => (
+                    <option key={t} value={t}>
+                      {t}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </form>
+          </section>
+
+          {/* Pemberitahuan (kiri) + Jenis pemberitahuan (kanan) */}
+          <section className={styles.panels}>
+            <div className={styles.panel}>
+              <div className={styles.panelHeader}>
+                <h2>Pemberitahuan Terbaru</h2>
+                <Link href="/pemberitahuan" className={styles.panelLink}>
+                  Lihat semua
+                </Link>
+              </div>
+
+              <PemberitahuanTerbaru contoh={notifications} />
+            </div>
+
+            <div className={styles.panel}>
+              <div className={styles.panelHeader}>
+                <h2>Jenis Pemberitahuan</h2>
+              </div>
+
+              <ul className={styles.list}>
+                {jenisPemberitahuan.map((j) => (
+                  <li key={j.name} className={toneClass[j.tone]}>
+                    <Link href={j.href} className={styles.typeItem}>
+                      <span className={styles.typeDot} aria-hidden="true" />
+                      <span className={styles.typeName}>{j.name}</span>
+                      <span className={styles.typeDesc}>{j.desc}</span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+
+              <p className={styles.note}>
+                Klik salah satu jenis untuk menyaring pemberitahuan.
+              </p>
+            </div>
+          </section>
+        </div>
       </div>
 
       <div className={styles.regulations}>
