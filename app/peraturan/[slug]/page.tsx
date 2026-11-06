@@ -15,8 +15,6 @@ const chipClass: Record<Status, string> = {
   Dicabut: styles.chipBad,
 };
 
-/* ---------- Ikon kecil ---------- */
-
 function Icon({ children }: { children: ReactNode }) {
   return (
     <svg
@@ -72,7 +70,6 @@ const DownloadIcon = () => (
   </Icon>
 );
 
-/* ---------- Halaman ---------- */
 
 export default async function DetailPeraturan({
   params,
@@ -99,7 +96,7 @@ export default async function DetailPeraturan({
       <header className={styles.topbar}>
         <Link href="/" className={styles.brand}>
           <span className={styles.brandName}>MAPENA</span>
-          <span className={styles.brandSub}>Riwayat Peraturan Direktur</span>
+          <span className={styles.brandSub}>Peraturan Direktur Polibatam</span>
         </Link>
 
         <div className={styles.topActions}>
@@ -138,9 +135,7 @@ export default async function DetailPeraturan({
         </div>
       </section>
 
-      {/* Isi */}
       <div className={`${styles.container} ${styles.layout}`}>
-        {/* Kolom kiri: materi pokok + metadata */}
         <div className={styles.column}>
           <section className={styles.card}>
             <div className={styles.cardHeader}>
@@ -167,7 +162,6 @@ export default async function DetailPeraturan({
           </section>
         </div>
 
-        {/* Kolom kanan: file + riwayat */}
         <div className={styles.column}>
           <section className={styles.card}>
             <div className={styles.cardHeader}>

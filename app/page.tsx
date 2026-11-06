@@ -10,7 +10,6 @@ import {
   type Status,
 } from "./data/peraturan";
 
-/* ---------- Data contoh (nanti ganti dengan data dari database/API) ---------- */
 
 type Tone = "info" | "ok" | "warn" | "bad" | "alt";
 
@@ -142,7 +141,6 @@ const chipClass: Record<Status, string> = {
   Dicabut: styles.chipBad,
 };
 
-/* ---------- Ikon kecil ---------- */
 
 function Icon({ children }: { children: ReactNode }) {
   return (
@@ -193,8 +191,6 @@ const ArrowIcon = () => (
     <path d="M5 12h14M13 6l6 6-6 6" />
   </Icon>
 );
-
-/* ---------- Kartu & bagian peraturan ---------- */
 
 type Variant = "latest" | "popular";
 
@@ -271,8 +267,6 @@ function RegulationSection({
   );
 }
 
-/* ---------- Komponen ---------- */
-
 export default function Home() {
   return (
     <main className={styles.page}>
@@ -281,7 +275,7 @@ export default function Home() {
       <header className={styles.topbar}>
         <Link href="/" className={styles.brand}>
           <span className={styles.brandName}>MAPENA</span>
-          <span className={styles.brandSub}>Riwayat Peraturan Direktur</span>
+          <span className={styles.brandSub}>Peraturan Direktur Polibatam</span>
         </Link>
 
         <nav className={styles.nav} aria-label="Menu utama">
@@ -370,7 +364,6 @@ export default function Home() {
           </form>
         </section>
 
-        {/* Pemberitahuan (kiri) + Jenis pemberitahuan (kanan) */}
         <section className={styles.panels}>
           <div className={styles.panel}>
             <div className={styles.panelHeader}>
@@ -418,7 +411,6 @@ export default function Home() {
       </div>
       </div>
 
-      {/* Peraturan terbaru & terpopuler */}
       <div className={styles.regulations}>
         <div className={styles.container}>
           <RegulationSection

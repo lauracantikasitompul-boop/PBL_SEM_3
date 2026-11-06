@@ -1,21 +1,17 @@
-/* Data peraturan (contoh). Dipakai bersama oleh homepage dan halaman detail,
-   jadi setiap kartu di homepage pasti punya halaman detail yang cocok.
-   Nanti file ini bisa diganti dengan pengambilan data dari database/API. */
-
 export type Status = "Aktif" | "Diganti" | "Dicabut";
 
 export type Hubungan = {
-  label: string; // contoh: "Diganti oleh", "Menggantikan", "Mencabut"
+  label: string; 
   items: { judul: string; slug?: string }[];
 };
 
 export type Peraturan = {
-  slug: string; // dipakai di alamat: /peraturan/<slug>
+  slug: string; 
   nomor: string;
   tentang: string;
   subjek: string;
   kategori: string;
-  tanggalDitetapkan: string; // format ISO: YYYY-MM-DD
+  tanggalDitetapkan: string; 
   status: Status;
   abstrak: string;
   views: number;
@@ -185,7 +181,6 @@ export const daftarPeraturan: Peraturan[] = [
   },
 ];
 
-/* ---------- Fungsi bantu ---------- */
 
 export function getPeraturan(slug: string): Peraturan | undefined {
   return daftarPeraturan.find((p) => p.slug === slug);
@@ -195,17 +190,14 @@ export function tahunPeraturan(p: Peraturan): string {
   return p.tanggalDitetapkan.slice(0, 4);
 }
 
-/** Contoh: "Nomor 08 Tahun 2026" */
 export function labelNomorTahun(p: Peraturan): string {
   return `Nomor ${p.nomor} Tahun ${tahunPeraturan(p)}`;
 }
 
-/** Contoh: "Peraturan Direktur Nomor 08 Tahun 2026" */
 export function judulLengkap(p: Peraturan): string {
   return `Peraturan Direktur ${labelNomorTahun(p)}`;
 }
 
-/** "long" -> 20 Oktober 2026, "short" -> 20 Okt 2026 */
 export function formatTanggal(
   iso: string,
   bulan: "long" | "short" = "long",
@@ -218,7 +210,6 @@ export function formatTanggal(
   });
 }
 
-/** 3 peraturan dengan tanggal terbaru */
 export function peraturanTerbaru(jumlah = 3): Peraturan[] {
   return [...daftarPeraturan]
     .sort(
@@ -229,7 +220,6 @@ export function peraturanTerbaru(jumlah = 3): Peraturan[] {
     .slice(0, jumlah);
 }
 
-/** 3 peraturan dengan jumlah dilihat terbanyak */
 export function peraturanTerpopuler(jumlah = 3): Peraturan[] {
   return [...daftarPeraturan].sort((a, b) => b.views - a.views).slice(0, jumlah);
 }
