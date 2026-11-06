@@ -22,7 +22,7 @@ export default function KebijakanEksternalPage() {
   return (
     // Sidebar dan background sudah dipegang dashboard/layout.tsx
     <main className="flex-1 p-4">
-      <TopBar judul="Kebijakan Eksternal" />
+      <TopBar judul="Kebijakan Eksternal" kembaliKe="/dashboard" />
       <KategoriGrid data={kategori} />
     </main>
   );
