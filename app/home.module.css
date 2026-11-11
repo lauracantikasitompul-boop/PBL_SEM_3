@@ -111,7 +111,6 @@
 .loginButton:focus-visible,
 .brand:focus-visible,
 .panelLink:focus-visible,
-.typeItem:focus-visible,
 .notificationItem:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
@@ -377,46 +376,6 @@
 }
 
 /* baris jenis pemberitahuan */
-.typeItem {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 0 12px;
-  align-items: center;
-  padding: 12px 8px;
-  margin: 0 -8px;
-  border-radius: 10px;
-  color: inherit;
-  text-decoration: none;
-  transition: background 0.15s;
-}
-
-.typeItem:hover {
-  background: rgba(255, 255, 255, 0.07);
-}
-
-.typeDot {
-  grid-row: span 2;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: var(--tone);
-}
-
-.typeName {
-  font-size: 15px;
-  font-weight: 600;
-}
-
-.typeDesc {
-  font-size: 13px;
-  color: var(--text-muted);
-}
-
-.note {
-  margin: 14px 0 6px;
-  font-size: 12.5px;
-  color: var(--text-muted);
-}
 
 /* ===== RESPONSIVE ===== */
 
@@ -734,4 +693,89 @@
   .regCard:hover {
     transform: none;
   }
+}
+
+/* ===== JUMLAH PERATURAN PER JENIS (panel kanan) ===== */
+
+.panelMeta {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.typeGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin: 8px 0 8px;
+  padding: 0;
+  list-style: none;
+}
+
+.typeBox {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 18px 18px 16px;
+  border: 1px solid var(--glass-line);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.06);
+  color: inherit;
+  text-decoration: none;
+  transition: background 0.15s, border-color 0.15s, transform 0.15s;
+}
+
+.typeBox:hover {
+  background: rgba(255, 255, 255, 0.11);
+  border-color: rgba(245, 166, 35, 0.55);
+  transform: translateY(-2px);
+}
+
+.typeBox:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.typeCount {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.typeCount strong {
+  font-size: 34px;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--accent);
+}
+
+.typeCount small {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.typeName {
+  font-size: 14.5px;
+  font-weight: 600;
+}
+
+@media (max-width: 420px) {
+  .typeGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .typeBox {
+    transition: none;
+  }
+
+  .typeBox:hover {
+    transform: none;
+  }
+
+  .panel {
+  scroll-margin-top: 24px;
+}
 }

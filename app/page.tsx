@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import styles from "./home.module.css";
+import Navbar from "./components/Navbar";
 import PemberitahuanTerbaru from "./components/pemberitahuanterbaru";
 import {
   formatTanggal,
@@ -13,22 +14,6 @@ import {
 
 
 type Tone = "info" | "ok" | "warn" | "bad" | "alt";
-
-const toneClass: Record<Tone, string> = {
-  info: styles.toneInfo,
-  ok: styles.toneOk,
-  warn: styles.toneWarn,
-  bad: styles.toneBad,
-  alt: styles.toneAlt,
-};
-
-const menu = [
-  { label: "Beranda", href: "/", active: true },
-  { label: "Kebutuhan Internal", href: "#" },
-  { label: "Kebutuhan Eksternal", href: "#" },
-  { label: "Pedoman Internal", href: "#" },
-  { label: "Pedoman Bisnis", href: "#" },
-];
 
 const jenisDokumen = [
   "Kebutuhan Internal",
@@ -73,43 +58,16 @@ const notifications: { text: string; tag: string; tone: Tone; date: string }[] =
     },
   ];
 
-const jenisPemberitahuan: {
-  name: string;
-  desc: string;
-  tone: Tone;
-  href: string;
-}[] = [
-  {
-    name: "Baru",
-    desc: "Peraturan yang baru diterbitkan",
-    tone: "info",
-    href: "/pemberitahuan?jenis=baru",
-  },
-  {
-    name: "Aktif",
-    desc: "Peraturan mulai berlaku",
-    tone: "ok",
-    href: "/pemberitahuan?jenis=aktif",
-  },
-  {
-    name: "Perubahan",
-    desc: "Isi peraturan diubah",
-    tone: "alt",
-    href: "/pemberitahuan?jenis=perubahan",
-  },
-  {
-    name: "Diganti",
-    desc: "Digantikan oleh satu atau lebih peraturan baru",
-    tone: "warn",
-    href: "/pemberitahuan?jenis=diganti",
-  },
-  {
-    name: "Dicabut",
-    desc: "Peraturan tidak berlaku lagi",
-    tone: "bad",
-    href: "/pemberitahuan?jenis=dicabut",
-  },
+/* Jumlah peraturan per jenis (angka contoh; nanti ganti dengan hitungan dari database) */
+
+const jumlahPerJenis = [
+  { nama: "Kebutuhan Internal", jumlah: 20 },
+  { nama: "Kebutuhan Eksternal", jumlah: 30 },
+  { nama: "Pedoman Internal", jumlah: 30 },
+  { nama: "Pedoman Bisnis", jumlah: 30 },
 ];
+
+const totalPeraturan = jumlahPerJenis.reduce((total, j) => total + j.jumlah, 0);
 
 type Regulasi = {
   jenis: string;
@@ -273,38 +231,11 @@ export default function Home() {
     <main className={styles.page}>
       <div className={styles.darkArea}>
         {/* Navbar */}
-        <header className={styles.topbar}>
-          <Link href="/" className={styles.brand}>
-            <span className={styles.brandName}>MAPENA</span>
-            <span className={styles.brandSub}>Riwayat Peraturan Direktur</span>
-          </Link>
-
-          <nav className={styles.nav} aria-label="Menu utama">
-            {menu.map((item) => (
-              <Link
-                key={item.label}
-                href={item.href}
-                className={item.active ? styles.navActive : undefined}
-                aria-current={item.active ? "page" : undefined}
-              >
-                {item.label}
-              </Link>
-            ))}
-          </nav>
-
-          <Link href="/login" className={styles.loginButton}>
-            Login Admin
-          </Link>
-        </header>
+        <Navbar active="beranda" transparan />
 
         <div className={styles.container}>
           {/* Hero + pencarian */}
           <section className={styles.hero}>
-            <p className={styles.badge}>
-              <span className={styles.badgeDot} aria-hidden="true" />
-              Peraturan Direktur
-            </p>
-
             <h1>
               Selamat datang di <span className={styles.accent}>MAPENA</span>
             </h1>
@@ -369,12 +300,12 @@ export default function Home() {
             </form>
           </section>
 
-          {/* Pemberitahuan (kiri) + Jenis pemberitahuan (kanan) */}
+          {/* Pemberitahuan (kiri) + Jumlah peraturan per jenis (kanan) */}
           <section className={styles.panels}>
             <div className={styles.panel}>
               <div className={styles.panelHeader}>
                 <h2>Pemberitahuan Terbaru</h2>
-                <Link href="/pemberitahuan" className={styles.panelLink}>
+                <Link href="/#pemberitahuan" className={styles.panelLink}>
                   Lihat semua
                 </Link>
               </div>
@@ -384,24 +315,28 @@ export default function Home() {
 
             <div className={styles.panel}>
               <div className={styles.panelHeader}>
-                <h2>Jenis Pemberitahuan</h2>
+                <h2>Jumlah Peraturan per Jenis</h2>
+                <span className={styles.panelMeta}>
+                  {totalPeraturan} peraturan
+                </span>
               </div>
 
-              <ul className={styles.list}>
-                {jenisPemberitahuan.map((j) => (
-                  <li key={j.name} className={toneClass[j.tone]}>
-                    <Link href={j.href} className={styles.typeItem}>
-                      <span className={styles.typeDot} aria-hidden="true" />
-                      <span className={styles.typeName}>{j.name}</span>
-                      <span className={styles.typeDesc}>{j.desc}</span>
+              <ul className={styles.typeGrid}>
+                {jumlahPerJenis.map((j) => (
+                  <li key={j.nama}>
+                    <Link
+                      href={`/peraturan?jenis=${encodeURIComponent(j.nama)}`}
+                      className={styles.typeBox}
+                    >
+                      <span className={styles.typeCount}>
+                        <strong>{j.jumlah}</strong>
+                        <small>peraturan</small>
+                      </span>
+                      <span className={styles.typeName}>{j.nama}</span>
                     </Link>
                   </li>
                 ))}
               </ul>
-
-              <p className={styles.note}>
-                Klik salah satu jenis untuk menyaring pemberitahuan.
-              </p>
             </div>
           </section>
         </div>
