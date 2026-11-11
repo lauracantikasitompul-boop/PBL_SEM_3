@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
+import Navbar from "../../components/Navbar";
 import styles from "./detail.module.css";
 import {
   formatTanggal,
@@ -14,6 +15,8 @@ const chipClass: Record<Status, string> = {
   Diganti: styles.chipWarn,
   Dicabut: styles.chipBad,
 };
+
+/* ---------- Ikon kecil ---------- */
 
 function Icon({ children }: { children: ReactNode }) {
   return (
@@ -70,6 +73,7 @@ const DownloadIcon = () => (
   </Icon>
 );
 
+/* ---------- Halaman ---------- */
 
 export default async function DetailPeraturan({
   params,
@@ -93,21 +97,7 @@ export default async function DetailPeraturan({
   return (
     <main className={styles.page}>
       {/* Navbar */}
-      <header className={styles.topbar}>
-        <Link href="/" className={styles.brand}>
-          <span className={styles.brandName}>MAPENA</span>
-          <span className={styles.brandSub}>Peraturan Direktur Polibatam</span>
-        </Link>
-
-        <div className={styles.topActions}>
-          <Link href="/" className={styles.backLink}>
-            Kembali ke Beranda
-          </Link>
-          <Link href="/login" className={styles.loginButton}>
-            Login Admin
-          </Link>
-        </div>
-      </header>
+      <Navbar active="peraturan" />
 
       {/* Banner */}
       <section className={styles.banner}>
@@ -135,7 +125,9 @@ export default async function DetailPeraturan({
         </div>
       </section>
 
+      {/* Isi */}
       <div className={`${styles.container} ${styles.layout}`}>
+        {/* Kolom kiri: materi pokok + metadata */}
         <div className={styles.column}>
           <section className={styles.card}>
             <div className={styles.cardHeader}>
@@ -162,6 +154,7 @@ export default async function DetailPeraturan({
           </section>
         </div>
 
+        {/* Kolom kanan: file + riwayat */}
         <div className={styles.column}>
           <section className={styles.card}>
             <div className={styles.cardHeader}>
